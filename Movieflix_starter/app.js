@@ -16,7 +16,8 @@ app.get("/", (req, res) => res.render("pages/index"));
 app.get("/myForm", (req, res) => res.render("pages/myForm"));
 
 app.post("myForm", (req, res) => {
-  // Add your implementation here 
+  let formData = req.body;
+  console.log(formData)
 });
 
 app.get("/myListQueryString", (req, res) => {
