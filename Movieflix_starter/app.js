@@ -24,7 +24,11 @@ app.post("/myForm", (req, res) => {
 });
 
 app.get("/myListQueryString", (req, res) => {
-  // Add your implementation here
+  let movie1 = req.query.movie1;
+  let movie2 = req.query.movie2;
+  const myList = []
+  myList.push(movie1, movie2)
+  res.render("pages/index", { movies: myList });
 });
 
 app.get("/search/:movieName", (req, res) => {
