@@ -11,7 +11,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.set("view engine", "ejs");
 
-const MESSAGES = { SUCCESS: "This movie exist in the database!", FAILURE: "This movie does not exist in the databse!"};
 
 app.get("/", (req, res) => res.render("pages/index", {movies: ''}));
 
