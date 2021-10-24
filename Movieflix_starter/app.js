@@ -4,6 +4,7 @@
  Your Partner's Name and student #:
 */
 const express = require("express");
+const fs = require('fs');
 
 let app = express();
 app.use(express.urlencoded({ extended: true }));
@@ -32,7 +33,19 @@ app.get("/myListQueryString", (req, res) => {
 });
 
 app.get("/search/:movieName", (req, res) => {
-  // Add your implementation here
+  let search = req.params.movieName;
+  fs.readFile('movieDescriptions.txt', (err, content) => {
+    const movie_chk = content.toString().split('\n')
+    for (num in movie_chk) {
+      let movieTitle = movie_chk[num].split(':')[0]
+      console.log(movieTitle.replace(/\s+/g, ''))
+      if (movieTitle.replace(/\s+/g, '') === search) {
+        res.render("pages/searchResult", { title: movieTitle, description: movie_chk[num].split(':')[1] });
+      } 
+    }
+    res.render("pages/searchResult", { title: search, description: `Movie ${search} could not be found` });
+  })
+  
 });
 
 app.listen(3000, () => {
