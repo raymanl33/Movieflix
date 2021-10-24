@@ -13,7 +13,7 @@ app.set("view engine", "ejs");
 
 const MESSAGES = { SUCCESS: "This movie exist in the database!", FAILURE: "This movie does not exist in the databse!"};
 
-app.get("/", (req, res) => res.render("pages/index"));
+app.get("/", (req, res) => res.render("pages/index", {movies: ''}));
 
 app.get("/myForm", (req, res) => res.render("pages/myForm"));
 
@@ -41,6 +41,7 @@ app.get("/search/:movieName", (req, res) => {
       console.log(movieTitle.replace(/\s+/g, ''))
       if (movieTitle.replace(/\s+/g, '') === search) {
         res.render("pages/searchResult", { title: movieTitle, description: movie_chk[num].split(':')[1] });
+
       } 
     }
     res.render("pages/searchResult", { title: search, description: `Movie ${search} could not be found` });
