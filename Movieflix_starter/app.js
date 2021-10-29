@@ -1,6 +1,7 @@
 /*
  Authors:
  Raymond Lee, A01062029
+ Tsz Hin Wu, A01232974
  Your Partner's Name and student #:
 */
 const express = require("express");
@@ -41,7 +42,7 @@ app.get("/search/:movieName", (req, res) => {
       let movieTitle = movie_chk[num].split(':')[0]
       console.log(movieTitle.replace(/\s+/g, ''))
       if (movieTitle.replace(/\s+/g, '') === search) {
-        res.render("pages/searchResult", { title: movieTitle, description: movie_chk[num].split(':')[1] });
+        res.render("pages/searchResult", { title: movieTitle, description: movie_chk[num].split(':')[1]});
       } 
     }
     res.render("pages/searchResult", { title: search, description: `Movie ${search} could not be found` });
